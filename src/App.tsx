@@ -1,22 +1,26 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import logo from "./assets/logo.svg";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="game-menu">
+        <img src={logo} alt="logo" />
+
+        <div className="game-menu-mid">
+          <h3>PICK PLAYER 1'S MARK</h3>
+          <div className="choice">
+            <button></button>
+            <button></button>
+          </div>
+          <h3>REMEMBER : X GOES FIRST</h3>
+        </div>
+        <div className="game-menu-bottom">
+          <button>NEW GAME(VS CPU)</button>
+          <button>NEW GAME(VS PLAYER)</button>
+        </div>
+      </div>
     </div>
   );
 }
