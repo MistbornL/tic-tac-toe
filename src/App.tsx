@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.scss";
 import logo from "./assets/logo.svg";
-import x from "./assets/icon-x.svg";
-import o from "./assets/icon-o.svg";
+import { ReactComponent as Xicon } from "./assets/icon-x.svg";
+import { ReactComponent as Oicon } from "./assets/icon-o.svg";
 
 function App() {
   return (
@@ -14,10 +14,12 @@ function App() {
           <h3>PICK PLAYER 1'S MARK</h3>
           <div className="choice">
             <button>
-              <img src={x} alt="x" />
+              <div>
+                <Xicon fill="#A8A8A8" />
+              </div>
             </button>
-            <button>
-              <img src={o} alt="o" />
+            <button style={{ background: "#A8BFC9" }}>
+              <Oicon />
             </button>
           </div>
           <h3>
