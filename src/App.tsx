@@ -1,6 +1,8 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import logo from "./assets/logo.svg";
+import x from "./assets/icon-x.svg";
+import o from "./assets/icon-o.svg";
 
 function App() {
   return (
@@ -11,10 +13,16 @@ function App() {
         <div className="game-menu-mid">
           <h3>PICK PLAYER 1'S MARK</h3>
           <div className="choice">
-            <button></button>
-            <button></button>
+            <button>
+              <img src={x} alt="x" />
+            </button>
+            <button>
+              <img src={o} alt="o" />
+            </button>
           </div>
-          <h3>REMEMBER : X GOES FIRST</h3>
+          <h3>
+            <span>REMEMBER : X GOES FIRST</span>
+          </h3>
         </div>
         <div className="game-menu-bottom">
           <button>NEW GAME(VS CPU)</button>

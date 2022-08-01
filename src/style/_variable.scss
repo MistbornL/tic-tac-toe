@@ -1,0 +1,26 @@
+$darkNavy: #1a2a33;
+$semyDarkNavy: #1f3641;
+$lightYellow: #f2b137;
+$lightBliue: #31c3bd;
+$silver: #a8bfc9;
+
+@mixin flex($direction) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
+@mixin font($color, $size, $height) {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: $size;
+  line-height: $height;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  /* Silver */
+  color: $color;
+}
