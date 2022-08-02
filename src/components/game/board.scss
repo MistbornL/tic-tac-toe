@@ -1,0 +1,15 @@
+@use "../../style/variable";
+@import "../../style/variable.scss";
+
+.board {
+  .board-top {
+  }
+
+  .board-row {
+    botton {
+      background: variable.$semyDarkNavy;
+      width: 140px;
+      height: 140px;
+    }
+  }
+}
