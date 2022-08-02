@@ -5,7 +5,11 @@ export const Square = ({ value, onClick }: any) => {
   console.log(value);
   return (
     <button onClick={onClick}>
-      <img src={value === "X" ? X : value === "O" ? O : null} alt="" />
+      {value === "X" ? (
+        <img src={X} alt="x" />
+      ) : value === "O" ? (
+        <img src={O} alt="o" />
+      ) : null}
     </button>
   );
 };

@@ -2,15 +2,29 @@ import React, { useState } from "react";
 import { Square } from "./Square";
 import logo from "../../assets/logo.svg";
 import "./board.scss";
+import calculateWinner from "../helper/calculateWinner";
 export const Board = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isX, setIsX] = useState(true);
 
   const handleClick = (e: any) => {
+    if (calculateWinner(squares) || squares[e]) {
+      return;
+    }
+
     squares[e] = isX ? "X" : "O";
     setSquares(squares);
     setIsX(!isX);
   };
+
+  const winner = calculateWinner(squares);
+  let status;
+
+  if (winner) {
+    status = `Winner: ${winner}`;
+  } else {
+    status = `NEXT PLAYER: ${isX ? "X" : "O"}`;
+  }
   return (
     <div className="board">
       <div className="board-top">
