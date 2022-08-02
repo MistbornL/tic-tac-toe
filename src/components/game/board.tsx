@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Square } from "./Square";
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import "./board.scss";
 export const Board = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
@@ -14,9 +14,9 @@ export const Board = () => {
   return (
     <div className="board">
       <div className="board-top">
-        <img src="" alt="" />
-        <button></button>
-        <button></button>
+        <img src={logo} alt="logo" />
+        <button>Turn</button>
+        <button>reset</button>
       </div>
       <div className="board-row">
         <Square value={squares[0]} onClick={() => handleClick(0)} />
@@ -32,6 +32,11 @@ export const Board = () => {
         <Square value={squares[6]} onClick={() => handleClick(6)} />
         <Square value={squares[7]} onClick={() => handleClick(7)} />
         <Square value={squares[8]} onClick={() => handleClick(8)} />
+      </div>
+      <div className="board-bottom">
+        <button>X</button>
+        <button>Ties</button>
+        <button>O</button>
       </div>
     </div>
   );

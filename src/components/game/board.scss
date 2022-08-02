@@ -2,14 +2,41 @@
 @import "../../style/variable.scss";
 
 .board {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   .board-top {
+    display: flex;
+    justify-content: space-between;
   }
-
   .board-row {
-    botton {
+    gap: 20px;
+    display: flex;
+    button {
+      box-shadow: inset 0px -8px 0px #10212a;
+      border-radius: 15px;
+      border-style: none;
       background: variable.$semyDarkNavy;
       width: 140px;
       height: 140px;
     }
+  }
+  .board-bottom {
+    display: flex;
+    justify-content: space-between;
+    button {
+      @include font(variable.$darkNavy, 14px, 18px);
+      width: 140px;
+      height: 72px;
+      background: variable.$lightBlue;
+      border-radius: 15px;
+      border-style: none;
+    }
+  }
+  .board-bottom button:nth-child(2) {
+    background-color: variable.$silver;
+  }
+  .board-bottom button:nth-child(3) {
+    background-color: variable.$lightYellow;
   }
 }
