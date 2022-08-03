@@ -8,29 +8,52 @@ import { Popup } from "./popup/Popup";
 export const Board = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isX, setIsX] = useState<boolean>(true);
-
+  var winner = calculateWinner(squares);
   const handleClick = (e: number) => {
-    if (calculateWinner(squares) || squares[e]) {
+    if (winner || squares[e]) {
       return;
+    } else {
+      console.log("tie");
+      winner = "tie";
     }
+    console.log(squares.includes(null));
 
     squares[e] = isX ? "X" : "O";
     setSquares(squares);
     setIsX(!isX);
   };
 
-  const winner = calculateWinner(squares);
+  const handleNext = () => {
+    setSquares(Array(9).fill(null));
+    setIsX(true);
+  };
 
   let status;
 
   if (winner) {
     status = `Winner: ${winner}`;
+    console.log(status);
   } else {
     status = `NEXT PLAYER: ${isX ? "X" : "O"}`;
+    console.log(status);
   }
   return (
     <>
-      {winner ? <Popup message={"you won"} img="" winner={winner} /> : null}
+      {winner ? (
+        <Popup
+          nextHandle={handleNext}
+          message={"you won"}
+          img=""
+          winner={winner}
+        />
+      ) : !squares.includes(null) ? (
+        <Popup
+          nextHandle={handleNext}
+          message={"ROUND TIED"}
+          img=""
+          winner={winner}
+        ></Popup>
+      ) : null}
       <div className="board">
         <div className="board-top">
           <img src={logo} alt="logo" />
