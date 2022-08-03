@@ -1,0 +1,42 @@
+@use "../../../style/variable";
+@import "../../../style/variable.scss";
+.popup {
+  padding: 45px;
+  box-sizing: border-box;
+  @include flex(column);
+  position: absolute;
+  width: 100%;
+  background-color: variable.$semyDarkNavy;
+  button {
+    cursor: pointer;
+    border-style: none;
+  }
+  h2 {
+    @include font(variable.$silver, 16px, 20px);
+  }
+  .winner {
+    // display: flex;
+    h1 {
+      @include font(variable.$lightYellow, 40px, 50px);
+    }
+  }
+
+  .popup-bottom {
+    display: flex;
+    gap: 16px;
+  }
+  .popup-bottom button:nth-child(1) {
+    background: variable.$silver;
+    width: 76px;
+    height: 52px;
+    box-shadow: inset 0px -4px 0px variable.$silver;
+    border-radius: 10px;
+  }
+  .popup-bottom button:nth-child(2) {
+    background-color: variable.$lightYellow;
+    width: 146px;
+    height: 52px;
+    box-shadow: inset 0px -4px 0px variable.$lightYellow;
+    border-radius: 10px;
+  }
+}

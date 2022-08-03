@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function calculateWinner(squares: any) {
   const winningPattern = [
     [0, 1, 2],
