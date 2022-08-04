@@ -1,10 +1,24 @@
 @use "../../style/variable";
 @import "../../style/variable.scss";
 
+@media screen and (max-width: 960px) {
+  .board-top {
+    margin-top: 24px;
+    margin-bottom: 67px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .board-top {
+    margin-top: 139px;
+  }
+}
+
 .board {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 100%;
   button {
     cursor: pointer;
   }
@@ -20,8 +34,10 @@
   .board-top button:nth-child(2) {
     @include flex(row);
     gap: 13px;
-    width: 140px;
+    max-width: 140px;
+    min-width: 97px;
     height: 52px;
+    padding: 16px;
     @include font(variable.$silver, 16px, 20px);
     background-color: variable.$semyDarkNavy;
     color: variable.$silver;
@@ -45,8 +61,11 @@
       border-radius: 15px;
       border-style: none;
       background: variable.$semyDarkNavy;
-      width: 140px;
-      height: 140px;
+      max-width: 140px;
+
+      min-width: 96px;
+      max-height: 140px;
+      min-height: 96px;
     }
 
     .xturn:active {
@@ -64,10 +83,12 @@
   .board-bottom {
     display: flex;
     justify-content: space-between;
+
     div {
       @include flex(column);
       @include font(variable.$darkNavy, 14px, 18px);
-      width: 140px;
+      max-width: 140px;
+      min-width: 96px;
       height: 72px;
       background: variable.$lightBlue;
       border-radius: 15px;

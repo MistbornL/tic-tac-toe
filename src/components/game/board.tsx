@@ -9,7 +9,7 @@ import restart from "../../assets/icon-restart.svg";
 import "./board.scss";
 import calculateWinner from "../helper/calculateWinner";
 import { Popup } from "./popup/Popup";
-import { Restart } from "./restart-popup/Restart";
+import { Restart } from "./restartPop/Restart";
 
 interface props {
   multiPlayer: boolean;
@@ -103,7 +103,7 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
       ) : null}
       {/* >>>> */}
 
-      {/* popup after clicking on restart button */}
+      {/*>>> popup after clicking on restart button */}
       {reset ? (
         <Restart
           handleRestart={() => {
@@ -114,6 +114,9 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
           handleCancel={() => setReset(false)}
         />
       ) : null}
+      {/* >>> */}
+
+      {/* drawing board */}
       <div className="board">
         <div className="board-top">
           <img style={{ height: "32px" }} src={logo} alt="logo" />

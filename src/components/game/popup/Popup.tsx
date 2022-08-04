@@ -15,28 +15,33 @@ export const Popup = ({
   setGame,
 }: properties) => {
   return (
-    <div className="popup">
-      <h2>{message}</h2>
-      <div className="winner">
-        {winner ? (
-          <h1
-            style={winner === "X" ? { color: "#31C3BD" } : { color: "#F2B137" }}
+    <>
+      <div className="overlay"></div>
+      <div className="popup">
+        <h2>{message}</h2>
+        <div className="winner">
+          {winner ? (
+            <h1
+              style={
+                winner === "X" ? { color: "#31C3BD" } : { color: "#F2B137" }
+              }
+            >
+              <img src={img} alt="winner" />
+              TAKES THE ROUND
+            </h1>
+          ) : null}
+        </div>
+        <div className="popup-bottom">
+          <button
+            onClick={() => {
+              setGame(false);
+            }}
           >
-            <img src={img} alt="winner" />
-            TAKES THE ROUND
-          </h1>
-        ) : null}
+            QUIT
+          </button>
+          <button onClick={nextHandle}>NEXT ROUND</button>
+        </div>
       </div>
-      <div className="popup-bottom">
-        <button
-          onClick={() => {
-            setGame(false);
-          }}
-        >
-          QUIT
-        </button>
-        <button onClick={nextHandle}>NEXT ROUND</button>
-      </div>
-    </div>
+    </>
   );
 };
