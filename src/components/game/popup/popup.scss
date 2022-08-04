@@ -1,10 +1,42 @@
 @use "../../../style/variable";
 @import "../../../style/variable.scss";
 
+@media screen and (max-width: 960px) {
+  .popup {
+    h2 {
+      @include font($silver, 14px, 18px);
+    }
+    .winner {
+      h1 {
+        gap: 8px;
+        @include font(variable.$lightYellow, 24px, 30px);
+      }
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .popup {
+    h2 {
+      @include font(variable.$silver, 16px, 20px);
+    }
+    .winner {
+      h1 {
+        gap: 24px;
+        @include font(variable.$lightYellow, 40px, 50px);
+      }
+    }
+  }
+}
+
 .overlay {
   position: absolute;
   width: 100%;
-  height: 120%;
+  height: 140%;
   mix-blend-mode: normal;
   opacity: 0.5;
   background: black;
@@ -21,14 +53,10 @@
     cursor: pointer;
     border-style: none;
   }
-  h2 {
-    @include font(variable.$silver, 16px, 20px);
-  }
+
   .winner {
     h1 {
       @include flex(row);
-      gap: 24px;
-      @include font(variable.$lightYellow, 40px, 50px);
     }
   }
 

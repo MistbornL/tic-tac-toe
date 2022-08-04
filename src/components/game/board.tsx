@@ -54,6 +54,9 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
         cpu();
       }
     }
+    if (winner === "X") {
+      setXScore(xScore + 1);
+    }
   }, [winner, squares, multiPlayer, player, isX, loading]);
   // >>>>
 

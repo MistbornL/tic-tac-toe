@@ -6,6 +6,7 @@
     margin-top: 24px;
     margin-bottom: 67px;
   }
+
   .board-row {
     img {
       width: 40px;
@@ -32,6 +33,9 @@
   .board-top {
     margin-top: 139px;
   }
+  .board-top button:nth-child(2) {
+    width: 140px;
+  }
 }
 
 .board {
@@ -54,7 +58,6 @@
   .board-top button:nth-child(2) {
     @include flex(row);
     gap: 13px;
-    max-width: 140px;
     min-width: 97px;
     height: 52px;
     padding: 16px;
