@@ -48,6 +48,18 @@
       width: 140px;
       height: 140px;
     }
+
+    .xturn:active {
+      background-image: url("../../assets/x-active.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .oturn:active {
+      background-image: url("../../assets/Oval-active.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
   .board-bottom {
     display: flex;

@@ -1,8 +1,8 @@
 import X from "../../assets/icon-x.png";
 import O from "../../assets/icon-o.png";
-export const Square = ({ value, onClick }: any) => {
+export const Square = ({ isX, value, onClick }: any) => {
   return (
-    <button onClick={onClick}>
+    <button className={isX ? "xturn" : "oturn"} onClick={onClick}>
       {value === "X" ? (
         <img src={X} alt="x" />
       ) : value === "O" ? (
