@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Square } from "./Square";
 import logo from "../../assets/logo.svg";
 import "./board.scss";
@@ -8,17 +8,34 @@ import { Popup } from "./popup/Popup";
 export const Board = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isX, setIsX] = useState<boolean>(true);
+  const [xScore, setXScore] = useState<number>(0);
+  const [oScore, setOScore] = useState<number>(0);
+  const [tieScore, setTieScore] = useState<number>(0);
   var winner = calculateWinner(squares);
+  var emptySlots: any = [];
+  for (let i = 0; i < squares.length; i++) {
+    if (squares[i] === null) {
+      emptySlots.push(i);
+    }
+  }
+
+  const cpu = () => {
+    const randomSlot = Math.floor(Math.random() * emptySlots.length);
+    if (!isX) {
+      squares[emptySlots[randomSlot]] = "O";
+      setSquares(squares);
+      setIsX(!isX);
+    }
+  };
+  useEffect(() => {
+    cpu();
+  }, [squares, emptySlots, isX]);
   const handleClick = (e: number) => {
     if (winner || squares[e]) {
       return;
-    } else {
-      console.log("tie");
-      winner = "tie";
     }
-    console.log(squares.includes(null));
 
-    squares[e] = isX ? "X" : "O";
+    squares[e] = isX ? "X" : null;
     setSquares(squares);
     setIsX(!isX);
   };
@@ -28,15 +45,6 @@ export const Board = () => {
     setIsX(true);
   };
 
-  let status;
-
-  if (winner) {
-    status = `Winner: ${winner}`;
-    console.log(status);
-  } else {
-    status = `NEXT PLAYER: ${isX ? "X" : "O"}`;
-    console.log(status);
-  }
   return (
     <>
       {winner ? (
@@ -76,9 +84,18 @@ export const Board = () => {
           <Square value={squares[8]} onClick={() => handleClick(8)} />
         </div>
         <div className="board-bottom">
-          <button>X</button>
-          <button>Ties</button>
-          <button>O</button>
+          <button>
+            X <br />
+            {xScore}
+          </button>
+          <button>
+            Ties <br />
+            {tieScore}
+          </button>
+          <button>
+            O <br />
+            {oScore}
+          </button>
         </div>
       </div>
     </>
