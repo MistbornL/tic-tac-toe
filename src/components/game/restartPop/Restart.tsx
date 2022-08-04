@@ -9,7 +9,9 @@ export const Restart = ({ handleCancel, handleRestart }: properties) => {
     <div className="popup">
       <h2>RESTART GAME?</h2>
       <div className="popup-bottom">
-        <button onClick={handleCancel}>NO, CANCEL</button>
+        <button style={{ width: "139px" }} onClick={handleCancel}>
+          NO, CANCEL
+        </button>
         <button onClick={handleRestart}>YES, RESTART</button>
       </div>
     </div>
