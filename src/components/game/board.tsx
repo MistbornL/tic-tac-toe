@@ -47,7 +47,13 @@ export const Board = ({ multiPlayer, setGame }: props) => {
       return;
     }
 
-    squares[e] = isX ? "X" : null;
+    if (multiPlayer) {
+      squares[e] = isX ? "X" : "O";
+      console.log(multiPlayer);
+    } else {
+      squares[e] = isX ? "X" : null;
+    }
+
     setSquares(squares);
     setIsX(!isX);
   };

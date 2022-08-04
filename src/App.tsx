@@ -34,6 +34,7 @@ function App() {
             <button
               onClick={() => {
                 setGame(true);
+                setMultiPlayer(false);
               }}
             >
               NEW GAME(VS CPU)
