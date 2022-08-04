@@ -10,9 +10,10 @@ import { Popup } from "./popup/Popup";
 interface props {
   multiPlayer: boolean;
   setGame: any;
+  player: string;
 }
 
-export const Board = ({ multiPlayer, setGame }: props) => {
+export const Board = ({ multiPlayer, setGame, player }: props) => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isX, setIsX] = useState<boolean>(true);
   const [xScore, setXScore] = useState<number>(0);
@@ -30,7 +31,11 @@ export const Board = ({ multiPlayer, setGame }: props) => {
 
   const cpu = () => {
     const randomSlot = Math.floor(Math.random() * emptySlots.length);
-    if (!isX) {
+    if (player === "O" && isX) {
+      squares[emptySlots[randomSlot]] = "X";
+      setSquares(squares);
+      setIsX(!isX);
+    } else if (player === "X" && !isX) {
       squares[emptySlots[randomSlot]] = "O";
       setSquares(squares);
       setIsX(!isX);
@@ -38,7 +43,7 @@ export const Board = ({ multiPlayer, setGame }: props) => {
   };
 
   useEffect(() => {
-    if (!multiPlayer) {
+    if (!multiPlayer && isX) {
       cpu();
     }
   }, [squares, emptySlots, isX]);
@@ -53,7 +58,11 @@ export const Board = ({ multiPlayer, setGame }: props) => {
       squares[e] = isX ? "X" : "O";
       console.log(multiPlayer);
     } else {
-      squares[e] = isX ? "X" : null;
+      if (player === "X") {
+        squares[e] = isX ? "X" : null;
+      } else {
+        squares[e] = !isX ? "O" : null;
+      }
     }
 
     setSquares(squares);
@@ -71,7 +80,7 @@ export const Board = ({ multiPlayer, setGame }: props) => {
         <Popup
           setGame={setGame}
           nextHandle={handleNext}
-          message={"you won"}
+          message={player === winner ? "YOU WON!" : "OH NO, YOU LOST…"}
           img={winner === "X" ? X : O}
           winner={winner}
         />
@@ -106,18 +115,18 @@ export const Board = ({ multiPlayer, setGame }: props) => {
           <Square value={squares[8]} onClick={() => handleClick(8)} />
         </div>
         <div className="board-bottom">
-          <button>
+          <div>
             X <br />
             {xScore}
-          </button>
-          <button>
+          </div>
+          <div>
             Ties <br />
             {tieScore}
-          </button>
-          <button>
+          </div>
+          <div>
             O <br />
             {oScore}
-          </button>
+          </div>
         </div>
       </div>
     </>

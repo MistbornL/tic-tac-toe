@@ -8,6 +8,7 @@ import { Board } from "./components/game/board";
 function App() {
   const [game, setGame] = useState(false);
   const [multiPlayer, setMultiPlayer] = useState(false);
+  const [player, setPlayer] = useState("");
   return (
     <div className="App">
       {!game ? (
@@ -17,12 +18,15 @@ function App() {
           <div className="game-menu-mid">
             <h3>PICK PLAYER 1'S MARK</h3>
             <div className="choice">
-              <button>
+              <button onClick={() => setPlayer("X")}>
                 <div>
                   <img src={Xicon} alt="X" />
                 </div>
               </button>
-              <button style={{ background: "#A8BFC9" }}>
+              <button
+                onClick={() => setPlayer("O")}
+                style={{ background: "#A8BFC9" }}
+              >
                 <img src={Oicon} alt="O" />
               </button>
             </div>
@@ -50,7 +54,7 @@ function App() {
           </div>
         </div>
       ) : (
-        <Board setGame={setGame} multiPlayer={multiPlayer} />
+        <Board player={player} setGame={setGame} multiPlayer={multiPlayer} />
       )}
     </div>
   );

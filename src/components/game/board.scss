@@ -28,7 +28,8 @@
   .board-bottom {
     display: flex;
     justify-content: space-between;
-    button {
+    div {
+      @include flex(column);
       @include font(variable.$darkNavy, 14px, 18px);
       width: 140px;
       height: 72px;
@@ -37,10 +38,10 @@
       border-style: none;
     }
   }
-  .board-bottom button:nth-child(2) {
+  .board-bottom div:nth-child(2) {
     background-color: variable.$silver;
   }
-  .board-bottom button:nth-child(3) {
+  .board-bottom div:nth-child(3) {
     background-color: variable.$lightYellow;
   }
 }
