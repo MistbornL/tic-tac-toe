@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.scss";
 import logo from "./assets/logo.svg";
-import { ReactComponent as Xicon } from "./assets/icon-x.svg";
-import { ReactComponent as Oicon } from "./assets/icon-o.svg";
+import Xicon from "./assets/Group 1.png";
+import Oicon from "./assets/Path.png";
 import { Board } from "./components/game/board";
 
 function App() {
@@ -19,11 +19,11 @@ function App() {
             <div className="choice">
               <button>
                 <div>
-                  <Xicon fill="#A8A8A8" />
+                  <img src={Xicon} alt="X" />
                 </div>
               </button>
               <button style={{ background: "#A8BFC9" }}>
-                <Oicon />
+                <img src={Oicon} alt="O" />
               </button>
             </div>
             <h3>

@@ -1,5 +1,5 @@
-import X from "../../assets/Group 1.png";
-import O from "../../assets/Path.png";
+import X from "../../assets/icon-x.png";
+import O from "../../assets/icon-o.png";
 export const Square = ({ value, onClick }: any) => {
   return (
     <button onClick={onClick}>

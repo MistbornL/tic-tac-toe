@@ -3,10 +3,11 @@
 
 .App {
   @include flex(row);
+  padding: 24px;
 }
 
 .game-menu {
-  margin-top: 215px;
+  margin-top: 200px;
   max-width: 100%;
   @include flex(column);
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Square } from "./Square";
 import logo from "../../assets/logo.svg";
+import X from "../../assets/icon-x.png";
+import O from "../../assets/icon-o.png";
 import "./board.scss";
 import calculateWinner from "../helper/calculateWinner";
 import { Popup } from "./popup/Popup";
@@ -70,7 +72,7 @@ export const Board = ({ multiPlayer, setGame }: props) => {
           setGame={setGame}
           nextHandle={handleNext}
           message={"you won"}
-          img=""
+          img={winner === "X" ? X : O}
           winner={winner}
         />
       ) : !squares.includes(null) ? (

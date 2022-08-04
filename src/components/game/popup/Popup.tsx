@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./popup.scss";
 
 interface properties {
@@ -23,8 +22,8 @@ export const Popup = ({
           <h1
             style={winner === "X" ? { color: "#31C3BD" } : { color: "#F2B137" }}
           >
-            {/* <img src={img} alt="winner" /> */}
-            {winner} TAKES THE ROUND
+            <img src={img} alt="winner" />
+            TAKES THE ROUND
           </h1>
         ) : null}
       </div>

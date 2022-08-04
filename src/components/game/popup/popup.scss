@@ -15,8 +15,9 @@
     @include font(variable.$silver, 16px, 20px);
   }
   .winner {
-    // display: flex;
     h1 {
+      @include flex(row);
+      gap: 24px;
       @include font(variable.$lightYellow, 40px, 50px);
     }
   }
