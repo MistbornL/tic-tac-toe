@@ -6,14 +6,14 @@ interface properties {
   img: any;
   winner: string;
   nextHandle: React.MouseEventHandler<HTMLButtonElement>;
-  game: boolean;
+  setGame: any;
 }
 export const Popup = ({
   message,
   img,
   winner,
   nextHandle,
-  game,
+  setGame,
 }: properties) => {
   return (
     <div className="popup">
@@ -31,8 +31,7 @@ export const Popup = ({
       <div className="popup-bottom">
         <button
           onClick={() => {
-            game = false;
-            console.log(game);
+            setGame(false);
           }}
         >
           QUIT

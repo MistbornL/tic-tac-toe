@@ -49,7 +49,7 @@ function App() {
           </div>
         </div>
       ) : (
-        <Board game={game} multiPlayer={multiPlayer} />
+        <Board setGame={setGame} multiPlayer={multiPlayer} />
       )}
     </div>
   );

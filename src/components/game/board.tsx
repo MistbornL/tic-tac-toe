@@ -7,10 +7,10 @@ import { Popup } from "./popup/Popup";
 
 interface props {
   multiPlayer: boolean;
-  game: boolean;
+  setGame: any;
 }
 
-export const Board = ({ multiPlayer, game }: props) => {
+export const Board = ({ multiPlayer, setGame }: props) => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isX, setIsX] = useState<boolean>(true);
   const [xScore, setXScore] = useState<number>(0);
@@ -61,7 +61,7 @@ export const Board = ({ multiPlayer, game }: props) => {
     <>
       {winner ? (
         <Popup
-          game={game}
+          setGame={setGame}
           nextHandle={handleNext}
           message={"you won"}
           img=""
@@ -69,7 +69,7 @@ export const Board = ({ multiPlayer, game }: props) => {
         />
       ) : !squares.includes(null) ? (
         <Popup
-          game={game}
+          setGame={setGame}
           nextHandle={handleNext}
           message={"ROUND TIED"}
           img=""
