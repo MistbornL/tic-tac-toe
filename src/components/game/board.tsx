@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Square } from "./Square";
 import logo from "../../assets/logo.svg";
 import X from "../../assets/icon-x.png";
+import outline from "../../assets/Group 1.png";
+import ovalOutline from "../../assets/oval-outline.png";
 import O from "../../assets/icon-o.png";
+import restart from "../../assets/icon-restart.svg";
 import "./board.scss";
 import calculateWinner from "../helper/calculateWinner";
 import { Popup } from "./popup/Popup";
@@ -19,34 +22,36 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
   const [xScore, setXScore] = useState<number>(0);
   const [oScore, setOScore] = useState<number>(0);
   const [tieScore, setTieScore] = useState<number>(0);
-  var winner = calculateWinner(squares);
-
+  const [loading, setLoading] = useState(true);
+  var winner: string = calculateWinner(squares);
   //>>>> CPU LOGIC
-  var emptySlots: any = [];
-  for (let i = 0; i < squares.length; i++) {
-    if (squares[i] === null) {
-      emptySlots.push(i);
-    }
-  }
-
-  const cpu = () => {
-    const randomSlot = Math.floor(Math.random() * emptySlots.length);
-    if (player === "O" && isX) {
-      squares[emptySlots[randomSlot]] = "X";
-      setSquares(squares);
-      setIsX(!isX);
-    } else if (player === "X" && !isX) {
-      squares[emptySlots[randomSlot]] = "O";
-      setSquares(squares);
-      setIsX(!isX);
-    }
-  };
-
   useEffect(() => {
-    if (!multiPlayer && isX) {
-      cpu();
+    var emptySlots: any = [];
+    for (let i = 0; i < squares.length; i++) {
+      if (squares[i] === null) {
+        emptySlots.push(i);
+      }
     }
-  }, [squares, emptySlots, isX]);
+    const cpu = () => {
+      const randomSlot = Math.floor(Math.random() * emptySlots.length);
+      if (player === "X" && !isX) {
+        squares[emptySlots[randomSlot]] = "O";
+        setSquares(squares);
+        setIsX(!isX);
+      }
+      if (player === "O" && isX && !winner) {
+        squares[emptySlots[randomSlot]] = "X";
+        setSquares(squares);
+        setIsX(!isX);
+      }
+    };
+    setLoading(false);
+    if (!multiPlayer && !loading) {
+      if (!loading) {
+        cpu();
+      }
+    }
+  }, [winner, squares, multiPlayer, player, isX, loading]);
   // >>>>
 
   const handleClick = (e: number) => {
@@ -56,7 +61,6 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
 
     if (multiPlayer) {
       squares[e] = isX ? "X" : "O";
-      console.log(multiPlayer);
     } else {
       if (player === "X") {
         squares[e] = isX ? "X" : null;
@@ -95,9 +99,18 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
       ) : null}
       <div className="board">
         <div className="board-top">
-          <img src={logo} alt="logo" />
-          <button>Turn</button>
-          <button>reset</button>
+          <img style={{ height: "32px" }} src={logo} alt="logo" />
+          <button>
+            <img
+              style={{ width: "20px", height: "20px" }}
+              src={isX ? outline : ovalOutline}
+              alt="xo"
+            />{" "}
+            Turn
+          </button>
+          <button>
+            <img src={restart} alt="restart" />
+          </button>
         </div>
         <div className="board-row">
           <Square value={squares[0]} onClick={() => handleClick(0)} />
@@ -116,7 +129,7 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
         </div>
         <div className="board-bottom">
           <div>
-            X <br />
+            X{player === "X" ? "(YOU)" : "(CPU)"} <br />
             {xScore}
           </div>
           <div>
@@ -124,7 +137,7 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
             {tieScore}
           </div>
           <div>
-            O <br />
+            O{player === "O" ? "(YOU)" : "(CPU)"} <br />
             {oScore}
           </div>
         </div>

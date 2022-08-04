@@ -12,6 +12,30 @@
   .board-top {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    button {
+      border-style: none;
+    }
+  }
+  .board-top button:nth-child(2) {
+    @include flex(row);
+    gap: 13px;
+    width: 140px;
+    height: 52px;
+    @include font(variable.$silver, 16px, 20px);
+    background-color: variable.$semyDarkNavy;
+    color: variable.$silver;
+    box-shadow: inset 0px -4px 0px #10212a;
+    border-radius: 10px;
+  }
+  .board-top button:nth-child(3) {
+    box-shadow: inset 0px -4px 0px #6b8997;
+    border-radius: 10px;
+    width: 52px;
+    height: 52px;
+    background: variable.$silver;
+    box-shadow: inset 0px -4px 0px #6b8997;
+    border-radius: 10px;
   }
   .board-row {
     gap: 20px;
