@@ -7,6 +7,7 @@ import { Board } from "./components/game/board";
 
 function App() {
   const [game, setGame] = useState(false);
+  const [multiPlayer, setMultiPlayer] = useState(false);
   return (
     <div className="App">
       {!game ? (
@@ -40,6 +41,7 @@ function App() {
             <button
               onClick={() => {
                 setGame(true);
+                setMultiPlayer(true);
               }}
             >
               NEW GAME(VS PLAYER)
@@ -47,7 +49,7 @@ function App() {
           </div>
         </div>
       ) : (
-        <Board />
+        <Board game={game} multiPlayer={multiPlayer} />
       )}
     </div>
   );

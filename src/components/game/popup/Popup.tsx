@@ -1,18 +1,19 @@
+import { useState } from "react";
 import "./popup.scss";
 
 interface properties {
   message: string;
   img: any;
   winner: string;
-  // quitHandle: React.MouseEventHandler<HTMLButtonElement>;
   nextHandle: React.MouseEventHandler<HTMLButtonElement>;
+  game: boolean;
 }
 export const Popup = ({
   message,
   img,
   winner,
-  // quitHandle,
   nextHandle,
+  game,
 }: properties) => {
   return (
     <div className="popup">
@@ -28,7 +29,14 @@ export const Popup = ({
         ) : null}
       </div>
       <div className="popup-bottom">
-        <button>QUIT</button>
+        <button
+          onClick={() => {
+            game = false;
+            console.log(game);
+          }}
+        >
+          QUIT
+        </button>
         <button onClick={nextHandle}>NEXT ROUND</button>
       </div>
     </div>

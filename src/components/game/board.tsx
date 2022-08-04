@@ -5,13 +5,20 @@ import "./board.scss";
 import calculateWinner from "../helper/calculateWinner";
 import { Popup } from "./popup/Popup";
 
-export const Board = () => {
+interface props {
+  multiPlayer: boolean;
+  game: boolean;
+}
+
+export const Board = ({ multiPlayer, game }: props) => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isX, setIsX] = useState<boolean>(true);
   const [xScore, setXScore] = useState<number>(0);
   const [oScore, setOScore] = useState<number>(0);
   const [tieScore, setTieScore] = useState<number>(0);
   var winner = calculateWinner(squares);
+
+  //>>>> CPU LOGIC
   var emptySlots: any = [];
   for (let i = 0; i < squares.length; i++) {
     if (squares[i] === null) {
@@ -27,9 +34,14 @@ export const Board = () => {
       setIsX(!isX);
     }
   };
+
   useEffect(() => {
-    cpu();
+    if (!multiPlayer) {
+      cpu();
+    }
   }, [squares, emptySlots, isX]);
+  // >>>>
+
   const handleClick = (e: number) => {
     if (winner || squares[e]) {
       return;
@@ -49,6 +61,7 @@ export const Board = () => {
     <>
       {winner ? (
         <Popup
+          game={game}
           nextHandle={handleNext}
           message={"you won"}
           img=""
@@ -56,6 +69,7 @@ export const Board = () => {
         />
       ) : !squares.includes(null) ? (
         <Popup
+          game={game}
           nextHandle={handleNext}
           message={"ROUND TIED"}
           img=""
