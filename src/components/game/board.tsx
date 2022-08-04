@@ -9,6 +9,7 @@ import restart from "../../assets/icon-restart.svg";
 import "./board.scss";
 import calculateWinner from "../helper/calculateWinner";
 import { Popup } from "./popup/Popup";
+import { Restart } from "./restart-popup/Restart";
 
 interface props {
   multiPlayer: boolean;
@@ -22,7 +23,9 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
   const [xScore, setXScore] = useState<number>(0);
   const [oScore, setOScore] = useState<number>(0);
   const [tieScore, setTieScore] = useState<number>(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [reset, setReset] = useState<boolean>(false);
+
   var winner: string = calculateWinner(squares);
   //>>>> CPU LOGIC
   useEffect(() => {
@@ -80,6 +83,7 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
 
   return (
     <>
+      {/*>>>>  popup after winning  */}
       {winner ? (
         <Popup
           setGame={setGame}
@@ -97,6 +101,19 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
           winner={winner}
         ></Popup>
       ) : null}
+      {/* >>>> */}
+
+      {/* popup after clicking on restart button */}
+      {reset ? (
+        <Restart
+          handleRestart={() => {
+            setSquares(Array(9).fill(null));
+            setIsX(true);
+            setReset(false);
+          }}
+          handleCancel={() => setReset(false)}
+        />
+      ) : null}
       <div className="board">
         <div className="board-top">
           <img style={{ height: "32px" }} src={logo} alt="logo" />
@@ -108,7 +125,11 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
             />{" "}
             Turn
           </button>
-          <button>
+          <button
+            onClick={() => {
+              setReset(true);
+            }}
+          >
             <img src={restart} alt="restart" />
           </button>
         </div>
