@@ -6,9 +6,29 @@
     margin-top: 24px;
     margin-bottom: 67px;
   }
+  .board-row {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .xturn:active {
+      background-size: 40px 40px;
+    }
+    .oturn:active {
+      background-size: 40px 40px;
+    }
+  }
 }
 
 @media screen and (min-width: 960px) {
+  .board-row {
+    button {
+      width: 140px;
+      height: 140px;
+    }
+  }
+
   .board-top {
     margin-top: 139px;
   }
@@ -61,10 +81,7 @@
       border-radius: 15px;
       border-style: none;
       background: variable.$semyDarkNavy;
-      max-width: 140px;
-
       min-width: 96px;
-      max-height: 140px;
       min-height: 96px;
     }
 
