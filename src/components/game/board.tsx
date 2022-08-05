@@ -17,7 +17,7 @@ interface props {
   player: string;
 }
 
-export const Board = ({ multiPlayer, setGame, player }: props) => {
+export const Board: any = ({ multiPlayer, setGame, player }: props) => {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [isX, setIsX] = useState<boolean>(true);
   const [xScore, setXScore] = useState<number>(0);
@@ -27,6 +27,7 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
   const [reset, setReset] = useState<boolean>(false);
 
   var winner: string = calculateWinner(squares);
+  console.log("winner: ", winner);
   //>>>> CPU LOGIC
   useEffect(() => {
     var emptySlots: any = [];
@@ -37,7 +38,7 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
     }
     const cpu = () => {
       const randomSlot = Math.floor(Math.random() * emptySlots.length);
-      if (player === "X" && !isX) {
+      if (player === "X" && !isX && !winner) {
         squares[emptySlots[randomSlot]] = "O";
         setSquares(squares);
         setIsX(!isX);
@@ -50,18 +51,25 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
     };
     setLoading(false);
     if (!multiPlayer && !loading) {
-      if (!loading) {
-        cpu();
-      }
-    }
-    if (winner === "X") {
-      setXScore(xScore + 1);
-    } else if (winner === "O") {
-      setOScore(oScore + 1);
+      cpu();
     }
   }, [winner, squares, multiPlayer, player, isX, loading]);
   // >>>>
-
+  if (winner === "X" && !loading) {
+    setXScore(xScore + 1);
+    setLoading(true);
+  } else if (winner === "O" && !loading) {
+    setOScore(oScore + 1);
+    setLoading(true);
+  } else if (
+    winner !== "X" &&
+    winner !== "O" &&
+    !squares.includes(null) &&
+    !loading
+  ) {
+    setTieScore(tieScore + 1);
+    setLoading(true);
+  }
   const handleClick = (e: number) => {
     if (winner || squares[e]) {
       return;
@@ -159,15 +167,15 @@ export const Board = ({ multiPlayer, setGame, player }: props) => {
         <div className="board-bottom">
           <div>
             X{player === "X" ? "(YOU)" : "(CPU)"} <br />
-            {xScore}
+            {Math.ceil(xScore / 2)}
           </div>
           <div>
             Ties <br />
-            {tieScore}
+            {Math.ceil(tieScore / 2)}
           </div>
           <div>
             O{player === "O" ? "(YOU)" : "(CPU)"} <br />
-            {oScore}
+            {Math.ceil(oScore / 2)}
           </div>
         </div>
       </div>
