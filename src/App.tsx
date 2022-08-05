@@ -18,14 +18,33 @@ function App() {
           <div className="game-menu-mid">
             <h3>PICK PLAYER 1'S MARK</h3>
             <div className="choice">
-              <button className="active" onClick={() => setPlayer("X")}>
+              <button
+                style={
+                  player === "X"
+                    ? {
+                        borderStyle: "double",
+                        borderColor: "#31c3bd",
+                      }
+                    : { borderStyle: "none" }
+                }
+                className="active"
+                onClick={() => setPlayer("X")}
+              >
                 <div>
                   <img src={Xicon} alt="X" />
                 </div>
               </button>
               <button
                 onClick={() => setPlayer("O")}
-                style={{ background: "#A8BFC9" }}
+                style={
+                  player === "O"
+                    ? {
+                        background: "#A8BFC9",
+                        borderStyle: "double",
+                        borderColor: "#f2b137",
+                      }
+                    : { background: "#A8BFC9" }
+                }
               >
                 <img src={Oicon} alt="O" />
               </button>
@@ -36,14 +55,20 @@ function App() {
           </div>
           <div className="game-menu-bottom">
             <button
+              type="button"
               onClick={() => {
-                setGame(true);
-                setMultiPlayer(false);
+                if (player) {
+                  setGame(true);
+                  setMultiPlayer(false);
+                } else {
+                  alert("CHOOSE X/O FIRST!!");
+                }
               }}
             >
               NEW GAME(VS CPU)
             </button>
             <button
+              type="button"
               onClick={() => {
                 setGame(true);
                 setMultiPlayer(true);
