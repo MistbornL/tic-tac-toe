@@ -40,6 +40,10 @@
         }
       }
     }
+
+    .active:active {
+      background-color: variable.$semyDarkNavy;
+    }
   }
   h3 {
     @include font(variable.$silver, 16px, 20px);

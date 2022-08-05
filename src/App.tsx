@@ -18,7 +18,7 @@ function App() {
           <div className="game-menu-mid">
             <h3>PICK PLAYER 1'S MARK</h3>
             <div className="choice">
-              <button onClick={() => setPlayer("X")}>
+              <button className="active" onClick={() => setPlayer("X")}>
                 <div>
                   <img src={Xicon} alt="X" />
                 </div>

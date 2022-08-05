@@ -101,7 +101,15 @@ export const Board: any = ({ multiPlayer, setGame, player }: props) => {
         <Popup
           setGame={setGame}
           nextHandle={handleNext}
-          message={player === winner ? "YOU WON!" : "OH NO, YOU LOST…"}
+          message={
+            player === winner && !multiPlayer
+              ? "YOU WON!"
+              : player !== winner && !multiPlayer
+              ? "OH NO, YOU LOST…"
+              : winner && multiPlayer
+              ? "YOU WON!"
+              : "null"
+          }
           img={winner === "X" ? X : O}
           winner={winner}
         />
